@@ -4,8 +4,8 @@ author: "Yohn Jairo Parra Bautista, PhD."
 date: "2/12/2021"
 output:
   html_document: default
-  pdf_document: default
   word_document: default
+  pdf_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -117,6 +117,27 @@ knitr::kable(head(cars), caption = "Top 6 rows of Cars Dataset")
 ```
 
 
+
 ## Insert an equation 
 
 $$ Y = \beta_0 + \beta_1x $$
+## Insert Images
+
+Here is an image inserted
+
+![star](star.png)
+
+Here is the Famu Logo
+
+![r logo](https://www.r-project.org/logo/Rlogo.svg)
+
+## Insert text with some footnotes 
+
+Here is footnote reference [^1] and another [^longnote]
+
+Here is an inline footnote ^[inline notes are easier to write, since you do not have to pick an identifier and move down to type the note.]
+
+[^1]: Here is the footnote.
+[^longnote]: Here's one with multiple blocks.
+
+

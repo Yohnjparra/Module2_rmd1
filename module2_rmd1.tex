@@ -82,6 +82,15 @@
 \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
 \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
 \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{longtable,booktabs}
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
 \usepackage{graphicx,grffile}
 \makeatletter
 \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
@@ -107,12 +116,167 @@
 \begin{document}
 \maketitle
 
+\hypertarget{this-is-a-level-1-header}{%
+\section{This is a level 1 header}\label{this-is-a-level-1-header}}
+
 \hypertarget{r-markdown}{%
 \subsection{R Markdown}\label{r-markdown}}
+
+\hypertarget{this-is-a-level-3-header}{%
+\subsubsection{This is a level 3
+header}\label{this-is-a-level-3-header}}
 
 This is an R Markdown document. Markdown is a simple formatting syntax
 for authoring HTML, PDF, and MS Word documents. For more details on
 using R Markdown see \url{http://rmarkdown.rstudio.com}.
+
+Here is a link to \href{http://google.com}{GOOGLE}
+
+Here is a word in \textbf{bold} and another word in \textbf{bold}.
+
+Here is a word in \emph{italics} and anoher word in \emph{italics}.
+
+When we compile our document, we are using the \texttt{rmarkdown}
+package.
+
+\begin{verbatim}
+2+2
+mean(c(1,2,3,4,5))
+\end{verbatim}
+
+Here is an example of a non-numbered list:
+
+\begin{itemize}
+\tightlist
+\item
+  Breakfast
+
+  \begin{itemize}
+  \tightlist
+  \item
+    food
+
+    \begin{itemize}
+    \tightlist
+    \item
+      eggs
+    \item
+      toast
+    \item
+      bacon
+    \end{itemize}
+  \item
+    drink
+
+    \begin{itemize}
+    \tightlist
+    \item
+      apple juice
+    \end{itemize}
+  \end{itemize}
+\item
+  Lunch
+
+  \begin{itemize}
+  \tightlist
+  \item
+    taco
+  \end{itemize}
+\item
+  Dinner
+
+  \begin{itemize}
+  \tightlist
+  \item
+    baked chicken
+  \item
+    broccoli
+  \item
+    rice
+  \end{itemize}
+\end{itemize}
+
+Here is an example of a non-numbered list:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Breakfast
+
+  \begin{enumerate}
+  \def\labelenumii{\alph{enumii}.}
+  \tightlist
+  \item
+    food
+
+    \begin{enumerate}
+    \def\labelenumiii{\roman{enumiii}.}
+    \tightlist
+    \item
+      eggs
+    \item
+      toast
+    \item
+      bacon
+    \end{enumerate}
+  \item
+    drink
+
+    \begin{enumerate}
+    \def\labelenumiii{\roman{enumiii}.}
+    \tightlist
+    \item
+      apple juice
+    \end{enumerate}
+  \end{enumerate}
+\item
+  Lunch
+
+  \begin{enumerate}
+  \def\labelenumii{\alph{enumii}.}
+  \tightlist
+  \item
+    taco 3 Dinner
+  \item
+    baked chicken
+  \item
+    broccoli
+  \item
+    rice
+  \end{enumerate}
+\end{enumerate}
+
+Here is an example of block quote:
+
+\begin{quote}
+This is a block quote. This paragraph has two lines.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  This is a list inside a block quote.
+\item
+  Second item.
+\end{enumerate}
+\end{quote}
+
+Here is an example of block quote:
+
+\begin{quote}
+This is a block quote. This paragraph has two lines.
+
+\begin{quote}
+This text is nested
+\end{quote}
+\end{quote}
+
+Here is an example of code in a block quote:
+
+\begin{quote}
+2+2 mean(c(1,2,3,4,5))
+\end{quote}
 
 When you click the \textbf{Knit} button a document will be generated
 that includes both content as well as the output of any embedded R code
@@ -143,5 +307,73 @@ You can also embed plots, for example:
 
 Note that the \texttt{echo\ =\ FALSE} parameter was added to the code
 chunk to prevent printing of the R code that generated the plot.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot}\NormalTok{(pressure)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{module2_rmd1_files/figure-latex/pressure2-1.pdf}
+
+\hypertarget{insert-tables}{%
+\subsection{Insert Tables}\label{insert-tables}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{knitr}\OperatorTok{::}\KeywordTok{kable}\NormalTok{(}\KeywordTok{head}\NormalTok{(cars), }\DataTypeTok{caption =} \StringTok{"Top 6 rows of Cars Dataset"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{longtable}[]{@{}rr@{}}
+\caption{Top 6 rows of Cars Dataset}\tabularnewline
+\toprule
+speed & dist\tabularnewline
+\midrule
+\endfirsthead
+\toprule
+speed & dist\tabularnewline
+\midrule
+\endhead
+4 & 2\tabularnewline
+4 & 10\tabularnewline
+7 & 4\tabularnewline
+7 & 22\tabularnewline
+8 & 16\tabularnewline
+9 & 10\tabularnewline
+\bottomrule
+\end{longtable}
+
+\hypertarget{insert-an-equation}{%
+\subsection{Insert an equation}\label{insert-an-equation}}
+
+\[ Y = \beta_0 + \beta_1x \] \#\# Insert Images
+
+Here is an image inserted
+
+\begin{figure}
+\centering
+\includegraphics{star.png}
+\caption{star}
+\end{figure}
+
+Here is the Famu Logo
+
+\begin{figure}
+\centering
+\includegraphics{https://www.r-project.org/logo/Rlogo.svg}
+\caption{r logo}
+\end{figure}
+
+\hypertarget{insert-text-with-some-footnotes}{%
+\subsection{Insert text with some
+footnotes}\label{insert-text-with-some-footnotes}}
+
+Here is footnote reference \footnote{Here is the footnote.} and another
+\footnote{Here's one with multiple blocks.}
+
+Here is an inline footnote \footnote{inline notes are easier to write,
+  since you do not have to pick an identifier and move down to type the
+  note.}
 
 \end{document}
